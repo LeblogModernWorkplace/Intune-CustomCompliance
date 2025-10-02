@@ -6,11 +6,11 @@
 
 # Required Value
 
-$ExpectedStatus = "True"
+$ExpectedStatus = "1"
 
 
 # Get the HP Bios password statut with WMI query
-$CurrentStatus = Get-wmiobject -namespace root\hp\instrumentedbios -class HP_BiosSetting | Where-object name -EQ "Setup Password" | Select -expandProperty active
+$CurrentStatus = Get-wmiobject -namespace root\hp\instrumentedbios -class HP_BiosSetting | Where-object name -EQ "Setup Password" | Select -expandProperty IsSet
 
 # Check the result and return the statut
 $ReturnStatus = if ($ExpectedStatus -ne $CurrentStatus) {
